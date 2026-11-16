@@ -1,0 +1,15 @@
+{
+  "_leia": "Dados ficticios. Serve para alguem clonar o repositorio e conseguir rodar o build sem ter o dados.json real. Nenhum valor aqui e verdadeiro.",
+  "atualizado": "01/01/2026",
+  "senha": "troque-esta-senha",
+  "fornecedores": [
+    { "n": "Fornecedor de exemplo A", "c": 1000, "p": 400, "par": [{ "v": 600, "d": "2026-12-01" }] },
+    { "n": "Fornecedor de exemplo B", "c": 800,  "p": 800, "par": [] },
+    { "n": "Fornecedor de exemplo C", "c": 500,  "p": 100, "par": [{ "v": 200, "d": "2026-12-05" }, { "v": 200, "d": null }] },
+    { "n": "Fornecedor de exemplo D", "c": 300,  "p": 0,   "par": [{ "v": 300, "d": null, "cartao": true }] }
+  ],
+  "tarefas": [
+    { "t": "Tarefa de exemplo sem prazo" },
+    { "t": "Tarefa de exemplo com prazo", "q": "2026-12-01" }
+  ]
+}

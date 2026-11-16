@@ -1,0 +1,31 @@
+# Valores reais e a senha em texto aberto. Nunca vai para o GitHub.
+dados.json
+
+# O contexto de trabalho cita a senha e os valores reais, então fica só aqui.
+# O README.md é a versão pública, sem segredo nenhum.
+CONTEXTO.md
+
+# A planilha original e qualquer exportação dela.
+*.xlsx
+*.xls
+*.xlsm
+~$*
+
+# Imagens. O convite tem o CPF impresso nele, e imagem não dá para varrer por texto.
+# A página não usa arquivo de imagem nenhum: todo o desenho é SVG dentro do HTML.
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.pdf
+
+# Configuração do editor.
+.vscode/
+
+# Saída de teste e lixo do sistema.
+saida/
+node_modules/
+Thumbs.db
+desktop.ini
+.DS_Store

@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jordana e Mateus</title>
+<meta name="description" content="Contagem regressiva e controle de pagamentos do casamento de Jordana e Mateus, 28 de novembro de 2026.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#FDF6F3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Great+Vibes&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='78' x='50' text-anchor='middle' font-size='72' font-family='Georgia,serif' fill='%237A1236'>JM</text></svg>">
+<style>
+@property --rev { syntax:'<length-percentage>'; inherits:false; initial-value:-16%; }
+
+:root{
+  --primary:#7A1236;
+  --secondary:#951142;
+  --deep:#5E2138;
+  --accent:#AE8A75;
+  --border:#E6D5CA;
+  --light:#FDF6F3;
+  --cream:#F7EDE7;
+  --white:#FFFFFF;
+  --ink:#3A3338;
+  --muted:#5A5A5A;
+  --pago:#4C7A5D;
+  --pago-fill:#E8F0EA;
+  --vencer:#8F6A2F;
+  --vencer-fill:#F7EEDC;
+  --urgente:#B3302E;
+  --urgente-fill:#FBEAE9;
+  --radius:14px;
+  --shadow:0 1px 2px rgba(90,40,55,.06), 0 8px 24px rgba(90,40,55,.07);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--light);color:var(--ink);
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;line-height:1.15;margin:0;color:var(--primary)}
+.script{font-family:'Great Vibes',cursive;font-weight:400}
+/* Cormorant usa algarismos antigos por padrao (o 1 vira I). Forcar alinhados em todo numero. */
+.num,.tcel b,.card .val,.dia-dt,.data-top{font-variant-numeric:lining-nums tabular-nums;font-feature-settings:"lnum" 1,"tnum" 1}
+
+.orn{display:flex;align-items:center;justify-content:center;gap:12px}
+.orn::before,.orn::after{content:"";height:1px;width:40px;background:linear-gradient(90deg,transparent,var(--accent))}
+.orn::after{background:linear-gradient(270deg,transparent,var(--accent))}
+.orn span{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+
+/* ============ CAPA ============ */
+.hero{
+  position:relative;overflow:hidden;
+  min-height:100vh;min-height:100svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:calc(24px + env(safe-area-inset-top)) 16px calc(78px + env(safe-area-inset-bottom));
+  background:radial-gradient(118% 62% at 50% 4%, #FFFBF9 0%, var(--light) 58%, #F9EDE9 100%);
+  text-align:center;
+}
+.hero-flor{position:absolute;width:min(48vw,272px);pointer-events:none;opacity:0;animation:florEntra 1.6s .15s ease-out forwards}
+.hero-flor.tl{top:calc(-7vw - 20px);left:calc(-9vw - 22px);transform:rotate(8deg)}
+.hero-flor.br{bottom:calc(-8vw - 24px);right:calc(-9vw - 22px);transform:rotate(188deg)}
+@keyframes florEntra{from{opacity:0;transform:scale(.88) rotate(8deg)}to{opacity:.95}}
+.hero-flor.br{animation-name:florEntraBr}
+@keyframes florEntraBr{from{opacity:0;transform:scale(.88) rotate(188deg)}to{opacity:.95;transform:rotate(188deg)}}
+
+.wreath{width:clamp(150px,43vw,208px);height:clamp(150px,43vw,208px);display:block;margin:0 auto}
+.wreath .folha{opacity:0;animation:folhaEntra .5s ease-out forwards}
+@keyframes folhaEntra{from{opacity:0}to{opacity:var(--o,.82)}}
+.wreath .ramo{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:ramoEntra 1.15s .1s ease-out forwards}
+@keyframes ramoEntra{to{stroke-dashoffset:0}}
+.wreath .mono,.wreath .coracao{opacity:0;animation:monoEntra .7s .92s cubic-bezier(.22,1.1,.36,1) forwards;transform-origin:100px 104px}
+.wreath .coracao{animation-delay:1.12s;transform-origin:100px 162px}
+@keyframes monoEntra{from{opacity:0;transform:scale(.72)}to{opacity:1;transform:scale(1)}}
+
+.nomes{
+  font-size:clamp(40px,12.8vw,78px);color:var(--primary);line-height:1.12;
+  /* O Great Vibes desenha floreios muito alem da caixa do texto, e mask-image
+     recorta exatamente nessa caixa. Sem esta folga o rabo do J fica cortado.
+     Em em, para a folga crescer junto com a fonte. */
+  margin:0 0 2px;padding:.16em .12em .08em;
+  --rev:-16%;
+  -webkit-mask-image:linear-gradient(90deg,#000 var(--rev),transparent calc(var(--rev) + 14%));
+  mask-image:linear-gradient(90deg,#000 var(--rev),transparent calc(var(--rev) + 14%));
+  animation:escrever 1.6s 1.25s cubic-bezier(.4,0,.25,1) forwards;
+}
+@keyframes escrever{from{--rev:-16%}to{--rev:116%}}
+
+.data-top{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(12.5px,3.5vw,17px);
+  letter-spacing:.3em;text-transform:uppercase;color:var(--deep);
+  opacity:0;animation:sobe .8s 2.45s ease-out forwards;
+}
+.hero-orn{margin:20px 0 26px;opacity:0;animation:sobe .8s 2.6s ease-out forwards}
+@keyframes sobe{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* Timer grande */
+.timer{display:flex;align-items:flex-start;justify-content:center;gap:0;width:100%;max-width:520px;margin:0 auto}
+.tcel{flex:1;min-width:0;opacity:0;animation:sobe .7s ease-out forwards;position:relative}
+.tcel:nth-child(1){animation-delay:2.72s}
+.tcel:nth-child(2){animation-delay:2.84s}
+.tcel:nth-child(3){animation-delay:2.96s}
+.tcel:nth-child(4){animation-delay:3.08s}
+.tcel + .tcel::before{content:"";position:absolute;left:0;top:14%;height:46%;width:1px;background:var(--border)}
+.tcel b{
+  display:block;font-family:'Cormorant Garamond',serif;font-weight:600;
+  font-size:clamp(50px,16.4vw,92px);line-height:.98;color:var(--primary);
+}
+.tcel span{display:block;font-size:clamp(9px,2.6vw,11.5px);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.tcel.seg b{color:var(--secondary)}
+.casados{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,9vw,54px);color:var(--primary);line-height:1.1}
+
+/* Seta de rolar */
+.seta{
+  position:absolute;left:50%;transform:translateX(-50%);
+  bottom:calc(20px + env(safe-area-inset-bottom));
+  display:flex;flex-direction:column;align-items:center;gap:7px;
+  background:none;border:none;cursor:pointer;padding:8px 14px;
+  color:var(--accent);opacity:0;animation:sobeSeta .9s 3.45s ease-out forwards;
+  transition:opacity .35s;
+}
+/* Keyframe proprio: 'sobe' termina em transform:none e apagaria o translateX(-50%) que centraliza. */
+@keyframes sobeSeta{from{opacity:0;transform:translateX(-50%) translateY(14px)}to{opacity:1;transform:translateX(-50%)}}
+.seta span{font-size:10px;letter-spacing:.2em;text-transform:uppercase}
+.seta svg{animation:pula 1.9s 4.3s ease-in-out infinite}
+@keyframes pula{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+.seta.some{opacity:0 !important;pointer-events:none}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .hero-flor,.wreath .folha,.wreath .mono,.wreath .coracao,.nomes,.data-top,.hero-orn,.tcel,.seta{animation:none !important;opacity:1 !important}
+  .wreath .folha{opacity:var(--o,.82) !important}
+  .wreath .ramo{stroke-dashoffset:0 !important}
+  .nomes{-webkit-mask-image:none;mask-image:none}
+  .seta svg{animation:none}
+}
+
+/* ============ SEÇÕES ============ */
+section{padding:52px 0}
+.sec-tit{text-align:center;margin-bottom:28px}
+.sec-tit h2{font-size:clamp(28px,8vw,42px);margin:6px 0 6px}
+.sec-tit p{margin:0;color:var(--muted);font-size:14.5px}
+
+/* ============ ACESSO ============ */
+/* Ocupa a tela inteira: sem isso a pagina fica curta demais, a rolagem trava
+   antes do fim e o toque na seta para no meio do caminho. */
+#acesso{
+  background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  min-height:100vh;min-height:100svh;display:flex;align-items:center;
+  padding:calc(40px + env(safe-area-inset-top)) 0 40px;
+}
+#acesso .wrap{width:100%}
+.acesso{max-width:440px;margin:0 auto;text-align:center;background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);padding:34px 24px;box-shadow:var(--shadow)}
+.acesso .cad{width:46px;height:46px;border-radius:50%;background:var(--light);border:1px solid var(--border);
+  display:grid;place-items:center;margin:0 auto 14px;color:var(--accent)}
+.acesso .orn{margin-bottom:10px}
+.acesso h2{font-size:clamp(26px,7vw,34px);margin-bottom:8px}
+.acesso-pe{margin-top:18px;font-size:12.5px;color:var(--muted);line-height:1.5}
+.acesso p{color:var(--muted);font-size:14.5px;margin:0 0 22px}
+.acesso .btn{width:100%;max-width:280px;font-size:15px;padding:14px 22px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;
+  border-radius:10px;border:1px solid var(--primary);background:var(--primary);color:#fff;padding:11px 20px;cursor:pointer;transition:.15s;text-decoration:none}
+.btn:hover{background:var(--deep);border-color:var(--deep)}
+.btn.ghost{background:transparent;color:var(--primary)}
+.btn.ghost:hover{background:var(--cream);color:var(--deep)}
+.btn.sm{font-size:13px;padding:7px 13px;border-radius:8px}
+.btn:focus-visible,input:focus-visible,.seta:focus-visible,[data-tar]:focus-visible{outline:2px solid var(--secondary);outline-offset:2px}
+
+/* ============ FINANCEIRO ============ */
+#financeiro{background:var(--white)}
+.erro{color:var(--urgente);font-size:13px;margin-top:12px;min-height:18px}
+
+.aviso{display:flex;gap:10px;align-items:flex-start;background:var(--vencer-fill);border:1px solid #E7D4AE;border-left:3px solid var(--vencer);
+  border-radius:10px;padding:12px 14px;font-size:13.5px;color:#6B501F;margin-bottom:22px}
+.aviso b{color:#56400F}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.card{background:var(--light);border:1px solid var(--border);border-radius:var(--radius);padding:15px 16px}
+.card .rot{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.card .val{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(23px,5.6vw,30px);line-height:1.15;color:var(--primary)}
+.card .sub{font-size:12.5px;color:var(--muted);margin-top:4px}
+.card.ok .val{color:var(--pago)}
+.card.go .val{color:var(--vencer)}
+.card.up .val{color:var(--urgente)}
+
+.barra{height:9px;border-radius:99px;background:var(--cream);overflow:hidden;margin:16px 0 6px;border:1px solid var(--border)}
+.barra i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:99px;transition:width .5s}
+.barra-leg{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-bottom:32px;gap:12px}
+
+.bloco{margin-bottom:36px}
+.bloco-tit{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.bloco-tit h3{font-size:24px}
+.bloco-tit span{font-size:12.5px;color:var(--muted)}
+
+.dia{border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden;background:var(--white)}
+.dia-top{display:flex;align-items:center;gap:10px;padding:11px 14px;background:var(--light);border-bottom:1px solid var(--border);flex-wrap:wrap}
+.dia-dt{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--primary)}
+.dia-sem{font-size:12.5px;color:var(--muted);flex:1;min-width:92px}
+.dia-val{font-weight:700;font-size:15.5px;color:var(--ink)}
+.tag{font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:99px;white-space:nowrap}
+.tag.ok{background:var(--pago-fill);color:var(--pago)}
+.tag.go{background:var(--vencer-fill);color:var(--vencer)}
+.tag.up{background:var(--urgente-fill);color:var(--urgente)}
+.tag.cartao{background:#EFE9F2;color:#5E3A6B}
+.dia-lista{list-style:none;margin:0;padding:0}
+.dia-lista li{display:flex;align-items:center;gap:9px;padding:11px 14px;border-top:1px solid #F2E7E0;flex-wrap:wrap}
+.dia-lista li:first-child{border-top:none}
+.dia-lista .nm{flex:1;min-width:120px;font-size:14.5px}
+.dia-lista .vl{font-weight:600;font-variant-numeric:tabular-nums}
+
+.tab{width:100%;border-collapse:collapse;font-size:15px}
+.tab th{text-align:right;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:0 10px 10px;border-bottom:1px solid var(--border)}
+.tab th:first-child{text-align:left}
+.tab td{padding:12px 10px;border-bottom:1px solid #F2E7E0;text-align:right;font-variant-numeric:tabular-nums}
+.tab td:first-child{text-align:left;font-weight:500}
+.tab tr:last-child td{border-bottom:none}
+.tab tfoot td{border-top:2px solid var(--border);font-weight:700;color:var(--primary);padding-top:14px}
+.mini{display:block;height:4px;width:100%;max-width:120px;margin-top:6px;background:var(--cream);border-radius:99px;overflow:hidden}
+.mini i{display:block;height:100%;background:var(--secondary)}
+.cel-ac{text-align:right;white-space:nowrap}
+
+.tarefas{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px}
+.tarefas li{display:flex;align-items:flex-start;gap:10px;background:var(--light);border:1px solid var(--border);border-radius:10px;padding:11px 13px;cursor:pointer;transition:.15s}
+.tarefas li:hover{border-color:var(--accent)}
+.tarefas li.feita{opacity:.6}
+.tarefas li.feita .tx{text-decoration:line-through;text-decoration-color:var(--accent)}
+.tarefas .bx{flex:none;width:18px;height:18px;border:1.5px solid var(--accent);border-radius:5px;margin-top:2px;display:grid;place-items:center;color:#fff;font-size:12px;line-height:1}
+.tarefas li.feita .bx{background:var(--pago);border-color:var(--pago)}
+.tarefas .tx{font-size:14.5px;line-height:1.45}
+.tarefas .qd{display:block;font-size:11.5px;color:var(--vencer);margin-top:2px;font-weight:600}
+
+.conf{background:var(--pago-fill);border:1px solid #CADCD1;border-radius:var(--radius);padding:15px 17px;font-size:13.8px;color:#2F5540}
+.conf.falha{background:var(--urgente-fill);border-color:#EFC9C7;color:#7E2321}
+.conf ul{margin:8px 0 0;padding-left:19px}
+.conf li{margin:3px 0}
+.acoes{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.acoes .btn{flex:1 1 auto}
+dialog{border:1px solid var(--border);border-radius:var(--radius);padding:0;max-width:430px;width:calc(100% - 28px);box-shadow:0 24px 60px rgba(90,40,55,.22);color:var(--ink)}
+dialog::backdrop{background:rgba(58,51,56,.45)}
+.dlg{padding:22px}
+.dlg h3{font-size:23px;margin-bottom:4px}
+.dlg p{font-size:13.5px;color:var(--muted);margin:0 0 14px}
+.dlg label{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:12px 0 5px}
+.dlg input,.dlg textarea{width:100%;font-family:'Inter',sans-serif;font-size:16px;padding:10px 12px;border:1px solid var(--border);border-radius:9px;background:#fff;color:var(--ink)}
+.dlg textarea{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;line-height:1.5;min-height:180px;resize:vertical}
+.dlg .acoes{justify-content:flex-end}
+
+footer{text-align:center;padding:38px 16px calc(50px + env(safe-area-inset-bottom));color:var(--muted);font-size:13px;border-top:1px solid var(--border);background:var(--light)}
+footer .script{font-size:30px;color:var(--primary);display:block;margin-bottom:6px}
+.hidden{display:none !important}
+
+@media (max-width:620px){
+  section{padding:40px 0}
+  .tab thead{display:none}
+  .tab,.tab tbody,.tab tr,.tab td{display:block;width:100%}
+  .tab tr{border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:10px;background:var(--light)}
+  .tab td{border:none;padding:3px 0;text-align:right;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .tab td::before{content:attr(data-r);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .tab td:first-child{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--primary);padding-bottom:8px;display:block;text-align:left}
+  .tab td:first-child::before{display:none}
+  .mini{max-width:none}
+  .tab tfoot tr{background:var(--cream)}
+}
+@media print{
+  .hero,#acesso,.acoes,.btn,.aviso,.seta{display:none !important}
+  body{background:#fff}
+  .dia,.card{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ CAPA ============ -->
+<header class="hero" id="capa">
+  <svg class="hero-flor tl" viewBox="0 0 152 152" aria-hidden="true"></svg>
+  <svg class="hero-flor br" viewBox="0 0 152 152" aria-hidden="true"></svg>
+
+  <svg class="wreath" viewBox="0 0 200 200" aria-label="Monograma J M"></svg>
+  <h1 class="nomes script">Jordana e Mateus</h1>
+  <div class="data-top">28 de novembro de 2026</div>
+  <div class="hero-orn orn"><span>Faltam</span></div>
+  <div class="timer" id="timer" role="timer"></div>
+
+  <button class="seta" id="seta" type="button" aria-label="Rolar para o controle financeiro">
+    <span>Role para ver</span>
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M6 9l6 6 6-6"/>
+    </svg>
+  </button>
+</header>
+
+<!-- ============ ACESSO ============ -->
+<section id="acesso">
+  <div class="wrap">
+    <div class="acesso">
+      <div class="cad">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.4" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      <div class="orn"><span>Jordana e Mateus</span></div>
+      <h2>Controle financeiro</h2>
+      <p>Área reservada aos noivos e à cerimonialista.</p>
+      <button class="btn" id="btnAcesso" type="button">Acessar com a senha</button>
+      <div class="acesso-pe">Contratado, pago e a pagar, sempre fechando com a planilha.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINANCEIRO ============ -->
+<section id="financeiro" class="hidden">
+  <div class="wrap">
+    <div class="sec-tit">
+      <div class="orn"><span>Orçamento</span></div>
+      <h2>Controle de pagamentos</h2>
+      <p id="subPainel"></p>
+    </div>
+
+    <div class="aviso" id="avisoLocal">
+      <span aria-hidden="true">●</span>
+      <div><b>Versão local, ainda não publicada.</b> Os valores estão em texto aberto dentro do arquivo. Antes de subir para a internet, este bloco sai e os dados passam a ficar criptografados pela senha.</div>
+    </div>
+
+    <div class="acoes" style="margin:0 0 24px">
+      <button class="btn" id="btnExcel" type="button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/>
+        </svg>
+        Exportar para Excel
+      </button>
+      <button class="btn ghost" id="btnImprimir" type="button">Imprimir ou salvar em PDF</button>
+    </div>
+
+    <div class="cards" id="cards"></div>
+    <div class="barra"><i id="barraFill" style="width:0%"></i></div>
+    <div class="barra-leg"><span id="legEsq"></span><span id="legDir"></span></div>
+
+    <div class="bloco">
+      <div class="bloco-tit"><h3>Calendário de pagamentos</h3><span id="resCal"></span></div>
+      <div id="calendario"></div>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco-tit"><h3>Fornecedores</h3><span id="resForn"></span></div>
+      <table class="tab">
+        <thead><tr><th>Fornecedor</th><th>Contratado</th><th>Pago</th><th>A pagar</th><th></th></tr></thead>
+        <tbody id="corpoForn"></tbody>
+        <tfoot id="pesForn"></tfoot>
+      </table>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco-tit"><h3>Tarefas</h3><span id="resTar"></span></div>
+      <ul class="tarefas" id="listaTarefas"></ul>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco-tit"><h3>Conferência</h3><span>Roda sozinha a cada lançamento</span></div>
+      <div class="conf" id="conf"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="script">Jordana e Mateus</span>
+  28 de novembro de 2026
+</footer>
+
+<dialog id="dlgSenha"><form class="dlg" id="formSenha">
+  <h3>Controle financeiro</h3>
+  <p>Digite a senha combinada para ver os valores.</p>
+  <label for="inSenha">Senha</label>
+  <input type="password" id="inSenha" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false">
+  <div class="erro" id="erroSenha" role="alert"></div>
+  <div class="acoes">
+    <button class="btn ghost" id="btnFechaSenha" type="button">Cancelar</button>
+    <button class="btn" type="submit">Entrar</button>
+  </div>
+</form></dialog>
+
+<script>
+/* ===================================================================
+   O COFRE.
+   Os valores do casamento nao estao neste arquivo em texto aberto.
+   Estao cifrados em AES-GCM 256, com a chave derivada da senha por
+   PBKDF2. Sem a senha nao ha como ler, nem aqui, nem no GitHub, nem
+   por quem baixar a pagina. Quem gera este bloco e o construir.mjs,
+   a partir do dados.json, que fica so no computador do Mateus.
+   Nao edite as linhas do COFRE a mao.
+   =================================================================== */
+const CASAMENTO = { data:'2026-11-28T15:00:00-03:00' };
+const COFRE = {"sal":"GKt6MbmMWZTLpQPZaUdDDw==","iv":"A+WJ4EMMcajuSYz2","dados":"uYbD//65ku3xb3PIrK+BRaYsdbUh5s3Mp5HwvG2mnFwU+jJgXOuxiJqexo72aosd26P/XC6ZbQG7LktQ2U5Iam4f49N2ThRWeQjD9naSV5Y5rcX4TYqp4eW7lIs+gQF+vmU5+RUuULH3l02XBsPkHAhSfQGTGMAtetgxFBVz9JOlbyefBxo6R584isd8bJYPR6jSvyfAht/w9L9KkJl84owh6i9u9PGlbbvk/bWG0spEPvjg+y2dSU+X4TlqdQzeZ52ZpOGSRtYW3GefFFfu+ubBXtHEMTkYBGQhcPLeCPK2hfQr6NoDOLqwpwTHvt4CL4GB/urpCaOThc/jOPb8iUUR0EygOjxYgs7owOzLzZ3ZzvtuRWIdaMCOEQmhxmy2YIf2XsnMKkA/h4FKHUEhsQFmPP8lJaL3wGjPjK41CmYpkGBoGLCycoZsYr8j30SBgPAa6LMIFxR+9iiYf//WVL8a9hrj7lwO4l5TXqWMxughGZzaiwACRCsKgqg4Vf01Thu/papOnqE/1OZ9XkPig6o+1jh6HkG9S+kIYBrQxvXaVc8Fn9fa77NFpxf0rrakzKFIPjX2SGgO9w70/O+EBbGt13y8+X4/uonbF/hZFKITi9GKhFYL0XF9ZorQD25y/5okCofw+1/hI1avUlFY0lYS0arfI3EQhqUfg03l9MAH51PHCG1VIDDG30O5J1ouIhxhUOpUdh1G86J25QpIsaHB7xfwHseSOVpwIrYarUuYyrUXYBQizZ6u2eWgvi6UDx5klZutFQM5JSj9YJOPkk+kGGvUFrX6TAVYeIqaTVBpORVgq79uluj1aAx/F4ZhyUyqdV5PUthiyAOaqnQACaB7n7XeZc5rIx5VTWpkSbaBLoysmZ9DFCOCsO1eQ0rcpdh/wA/SSQA2FAitpBcMDyxlq51ypB1mYG6wjF0pykkFySX03JAF+DPnzYlTpZqn/AzxWhbkuakFGBgVerKQfNND5jC2SXatTPOX7A5Tji4nsK2dgHO1hHmSYiXKVvQSqNo40DSfnfzLMErx5d7fdEUxwBC0cQoS1tWi3Q3Vhq/J3cu40jlS4Ckq2PxKgdx0+wgWTDflXx1bHdF4oS7YmSaUcvLkxmj9qmQGxPTKN0vu73hJH0Pf1DYWV/+2yPnhgpX3/KwdeB3ycoGrxYAUX/hwSycEN/xZ8/cLjPhRDdc9/A5iF9C3ORXSS4HT7RHDrWKWvEAeSacP8PuqjCaViMpEWWUQAa1tiWWxzK9r7H6p3IrwcDgm1dJYt8mLVWzG+pIgkEJjTEcqYQNHzRxggbVOSXxlWC+S3wAns0vBv7W1cFAp8v/9zun5Yd8Jn77o1c4k5VZ3LQgsbZcgxPao0HlKEtfXrnLchIH36GGKTv9C1+1H/S3CBtJ/rEQRFRZRMO9ShpqE2F630Xls1Nl65fdANBcUQKLxIuHEk7HvYj+q7QXyFehR7v6SOr3y1HCS8ldRTjYdKxJqoFw4rlnCGv9uxc9H8jESgpCTISlBE8ub6STr2W7/MNxJCq0rhhKZbsRVSxbelAKyI5+FZnzhuckuxOYYm8ysGgLiwKWsM/qDY6Wie7wKh2TpWZEWHvE7s+JmmgohZypRdKPSsKREpgp+34z2E2TArVAE730GoOERtY7gMZnTZJ/RgiZ5QS2WQkmONOG0MvZeLmrZ2BnK7ekefbUmdrfZ7pv5ZhnBpoYDsOepBEYN2SfAG30EXbYDzRMm4ZvSZ10DCMZ/4SS6v3TTtC8CyeHINP7/VT4vuVyl7Dk4loXi5/kaDsUFv2fvXhamXKoX8tDcGhUirfCvFsmHHx/ww0Wve+FzLuNDqaWMgWSCvfiXCf84Cn3Hm2EXl41LGqYEEwZffdKTHJ0Kz5TR5epkK4r/oivNB5ZAKbe7N1p5OF94x46GvzjfbS9amhUjiZ12v5eH+DZmeG9uyJFJ+XuD4jA=","iteracoes":250000}; /* COFRE */
+
+let FORNECEDORES = [], TAREFAS = [], ATUALIZADO = '';
+
+// Deriva a chave da senha. PBKDF2 lento de proposito: torna caro
+// tentar senha por senha em quem baixar a pagina.
+async function derivar(senha, sal, iteracoes){
+  // Mesma normalizacao do construir.mjs: o teclado do celular poe maiuscula sozinho.
+  const limpa = String(senha).trim().toLowerCase();
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(limpa), 'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey(
+    { name:'PBKDF2', salt:sal, iterations:iteracoes, hash:'SHA-256' },
+    base, { name:'AES-GCM', length:256 }, false, ['decrypt']);
+}
+const deB64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+
+// Devolve true se a senha abriu. O proprio AES-GCM verifica a senha:
+// com a chave errada a autenticacao falha e o decrypt lanca excecao.
+async function abrirCofre(senha){
+  const chave = await derivar(senha, deB64(COFRE.sal), COFRE.iteracoes);
+  let claro;
+  try {
+    claro = await crypto.subtle.decrypt({ name:'AES-GCM', iv:deB64(COFRE.iv) }, chave, deB64(COFRE.dados));
+  } catch(e){ return false; }
+  const d = JSON.parse(new TextDecoder().decode(claro));
+  FORNECEDORES = d.fornecedores; TAREFAS = d.tarefas; ATUALIZADO = d.atualizado;
+  return true;
+}
+
+/* =================== Utilidades =================== */
+const $  = (s,e=document)=>e.querySelector(s);
+const $$ = (s,e=document)=>[...e.querySelectorAll(s)];
+const brl = n => n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const SEMANA = ['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+const dataCurta = iso => { const [a,m,d]=iso.split('-'); return d+'/'+m; };
+const diaSemana = iso => cap(SEMANA[new Date(iso+'T12:00:00').getDay()]);
+const hojeISO = () => { const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); };
+const diasAte = iso => Math.round((new Date(iso+'T12:00:00') - new Date(hojeISO()+'T12:00:00'))/864e5);
+const CHAVE_T='jm-tarefas-v1';
+function ler(k,p){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):p; }catch(e){ return p; } }
+function gravar(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+let FEITAS = ler(CHAVE_T, []);
+
+/* =================== Contagem regressiva =================== */
+const ALVO = new Date(CASAMENTO.data).getTime();
+let celulas = null;
+function tick(){
+  const falta = ALVO - Date.now();
+  const tm = $('#timer');
+  if (falta <= 0){
+    const dias = Math.floor(-falta/864e5);
+    if (!tm.dataset.fim){
+      tm.dataset.fim = '1';
+      tm.innerHTML = '<div class="tcel" style="animation-delay:0s"><b class="casados">Casados</b>'+
+        '<span>'+(dias < 1 ? 'Hoje é o grande dia' : 'Há '+dias+(dias===1?' dia':' dias'))+'</span></div>';
+      $('.hero-orn span').textContent = 'Enfim';
+    }
+    return;
+  }
+  const v = [
+    [Math.floor(falta/864e5),      'dias'],
+    [Math.floor(falta%864e5/36e5), 'horas'],
+    [Math.floor(falta%36e5/6e4),   'minutos'],
+    [Math.floor(falta%6e4/1e3),    'segundos'],
+  ];
+  if (!celulas){
+    tm.innerHTML = v.map(([,r],i)=>'<div class="tcel'+(i===3?' seg':'')+'"><b class="num">00</b><span>'+r+'</span></div>').join('');
+    celulas = $$('#timer .tcel b');
+  }
+  v.forEach(([n],i)=>{
+    const t = String(n).padStart(2,'0');
+    if (celulas[i].textContent !== t) celulas[i].textContent = t;
+  });
+}
+
+/* =================== Cálculo =================== */
+function calcular(){
+  const linhas = FORNECEDORES.map((f,fi)=>({ ...f, fi, pago:f.p, aPagar:f.c - f.p, parcelas:f.par }));
+  const tot = linhas.reduce((a,l)=>({ c:a.c+l.c, p:a.p+l.pago, a:a.a+l.aPagar }), {c:0,p:0,a:0});
+  return { linhas, tot };
+}
+
+/* =================== Painel =================== */
+function desenhar(){
+  const { linhas, tot } = calcular();
+  const abertas = [];
+  linhas.forEach(l => l.parcelas.forEach(p => abertas.push({ ...p, nome:l.n })));
+  const comData = abertas.filter(p=>p.d).sort((a,b)=>a.d.localeCompare(b.d));
+  const semData = abertas.filter(p=>!p.d);
+  const prox = comData[0];
+  const pct = tot.c ? tot.p/tot.c*100 : 0;
+
+  let cProx;
+  if (prox){
+    const dd = diasAte(prox.d);
+    cProx = { r:'Próximo pagamento', v:brl(comData.filter(p=>p.d===prox.d).reduce((s,p)=>s+p.v,0)), cls: dd<=2?'up':'go',
+      s: dataCurta(prox.d)+', '+(dd<0?'atrasado':dd===0?'é hoje':dd===1?'amanhã':'em '+dd+' dias') };
+  } else {
+    cProx = { r:'Próximo pagamento', v:'Nenhum', cls:'ok', s: semData.length? semData.length+' itens sem data':'Tudo quitado' };
+  }
+  $('#cards').innerHTML = [
+    { r:'Contratado',  v:brl(tot.c), cls:'',   s:linhas.length+' fornecedores' },
+    { r:'Já pago',     v:brl(tot.p), cls:'ok', s:pct.toFixed(1).replace('.',',')+'% do total' },
+    { r:'Falta pagar', v:brl(tot.a), cls:'go', s:abertas.length+' pagamentos em aberto' },
+    cProx
+  ].map(c=>'<div class="card '+c.cls+'"><div class="rot">'+c.r+'</div><div class="val num">'+c.v+'</div><div class="sub">'+c.s+'</div></div>').join('');
+
+  $('#barraFill').style.width = pct.toFixed(1)+'%';
+  $('#legEsq').textContent = 'Pago ' + brl(tot.p);
+  $('#legDir').textContent = 'Falta ' + brl(tot.a);
+
+  const porDia = {};
+  linhas.forEach(l => l.parcelas.forEach(p => { (porDia[p.d || 'sem'] ||= []).push({ ...p, nome:l.n }); }));
+  const linhaItens = itens => itens.map(i=>'<li><span class="nm">'+i.nome+'</span>'+
+      (i.cartao?'<span class="tag cartao">Cartão</span>':'')+'<span class="vl num">'+brl(i.v)+'</span></li>').join('');
+  let html = '';
+  for (const k of Object.keys(porDia).filter(k=>k!=='sem').sort()){
+    const abertos = porDia[k];
+    const soma = abertos.reduce((s,i)=>s+i.v,0), dd = diasAte(k);
+    const tag = dd < 0  ? '<span class="tag up">Atrasado</span>'
+      : dd <= 2 ? '<span class="tag up">'+(dd===0?'É hoje':dd===1?'Amanhã':'Em 2 dias')+'</span>'
+      : '<span class="tag go">Em '+dd+' dias</span>';
+    html += '<div class="dia"><div class="dia-top"><span class="dia-dt">'+dataCurta(k)+'</span>'+
+      '<span class="dia-sem">'+diaSemana(k)+(k==='2026-11-28'?', o casamento':'')+'</span>'+tag+
+      '<span class="dia-val num">'+brl(soma)+'</span></div>'+
+      '<ul class="dia-lista">'+linhaItens(abertos)+'</ul></div>';
+  }
+  if (porDia.sem){
+    const soma = porDia.sem.reduce((s,i)=>s+i.v,0);
+    html += '<div class="dia"><div class="dia-top" style="background:var(--vencer-fill);border-color:#E7D4AE">'+
+      '<span class="dia-dt" style="color:var(--vencer)">?</span>'+
+      '<span class="dia-sem">Sem data definida, precisa combinar com o fornecedor</span>'+
+      '<span class="tag go">A definir</span>'+
+      '<span class="dia-val num">'+brl(soma)+'</span></div>'+
+      '<ul class="dia-lista">'+linhaItens(porDia.sem)+'</ul></div>';
+  }
+  $('#calendario').innerHTML = html;
+  const totalAberto = abertas.reduce((s,p)=>s+p.v,0);
+  $('#resCal').textContent = comData.length+' com data e '+semData.length+' a definir, somando '+brl(totalAberto);
+
+  $('#corpoForn').innerHTML = linhas.map(l=>{
+    const p = l.c ? l.pago/l.c*100 : 100, quit = l.aPagar < 0.005;
+    return '<tr><td>'+l.n+'<span class="mini"><i style="width:'+p.toFixed(1)+'%"></i></span></td>'+
+      '<td data-r="Contratado" class="num">'+brl(l.c)+'</td>'+
+      '<td data-r="Pago" class="num" style="color:var(--pago)">'+brl(l.pago)+'</td>'+
+      '<td data-r="A pagar" class="num" style="color:'+(quit?'var(--muted)':'var(--vencer)')+';font-weight:'+(quit?'400':'600')+'">'+(quit?'Quitado':brl(l.aPagar))+'</td>'+
+      '<td class="cel-ac">'+(quit?'<span class="tag ok">Quitado</span>':'<span class="tag go">Em aberto</span>')+'</td></tr>';
+  }).join('');
+  $('#pesForn').innerHTML = '<tr><td>Total</td><td data-r="Contratado" class="num">'+brl(tot.c)+
+    '</td><td data-r="Pago" class="num">'+brl(tot.p)+'</td><td data-r="A pagar" class="num">'+brl(tot.a)+'</td><td></td></tr>';
+  $('#resForn').textContent = linhas.filter(l=>l.aPagar<0.005).length+' de '+linhas.length+' já quitados';
+
+  const fecha = Math.abs(tot.p + tot.a - tot.c) < 0.005;
+  const erros = linhas.filter(l=>Math.abs(l.pago + l.aPagar - l.c) >= 0.005);
+  const cfg = $('#conf');
+  cfg.className = 'conf' + (fecha && !erros.length ? '' : ' falha');
+  cfg.innerHTML = '<b>'+(fecha && !erros.length ? 'Todas as conferências passaram.' : 'Atenção, uma conferência falhou.')+'</b><ul>'+
+    '<li>Pago mais a pagar: '+brl(tot.p+tot.a)+'. Contratado: '+brl(tot.c)+'. '+(fecha?'Fecha.':'Não fecha.')+'</li>'+
+    '<li>Por fornecedor: '+(erros.length?erros.map(e=>e.n).join(', ')+' não fecham.':'os '+linhas.length+' fecham.')+'</li>'+
+    '<li>Calendário mais itens sem data: '+brl(totalAberto)+'. Falta pagar: '+brl(tot.a)+'. '+(Math.abs(totalAberto-tot.a)<0.005?'Fecha.':'Não fecha.')+'</li></ul>';
+
+  $('#listaTarefas').innerHTML = TAREFAS.map((t,i)=>{
+    const f = FEITAS.includes(i);
+    let q = '';
+    if (t.q && !f){ const dd = diasAte(t.q); q = '<span class="qd">Até '+dataCurta(t.q)+(dd>=0?', em '+dd+' dias':', atrasado')+'</span>'; }
+    return '<li class="'+(f?'feita':'')+'" data-tar="'+i+'" role="checkbox" tabindex="0" aria-checked="'+f+'">'+
+      '<span class="bx" aria-hidden="true">'+(f?'✓':'')+'</span><span class="tx">'+t.t+q+'</span></li>';
+  }).join('');
+  $('#resTar').textContent = FEITAS.length+' de '+TAREFAS.length+' concluídas';
+}
+
+/* ===================================================================
+   EXCEL. Um .xlsx e so um ZIP com alguns XMLs dentro.
+   Monto o ZIP aqui mesmo, sem compressao (metodo 0, que o Excel aceita),
+   para a pagina nao depender de nenhuma biblioteca externa.
+   Os totais vao como formula SOMA, nao como numero fixo, justamente
+   para a planilha nunca mostrar um total velho como a original mostrava.
+   =================================================================== */
+const TABELA_CRC = (()=>{
+  const t = new Uint32Array(256);
+  for (let n=0; n<256; n++){ let c=n; for (let k=0;k<8;k++) c = (c & 1) ? (0xEDB88320 ^ (c>>>1)) : (c>>>1); t[n] = c>>>0; }
+  return t;
+})();
+function crc32(b){
+  let c = 0xFFFFFFFF;
+  for (let i=0;i<b.length;i++) c = TABELA_CRC[(c ^ b[i]) & 0xFF] ^ (c>>>8);
+  return (c ^ 0xFFFFFFFF) >>> 0;
+}
+function zipar(arquivos){
+  const enc = new TextEncoder();
+  const agora = new Date();
+  const horaDos = (agora.getHours()<<11) | (agora.getMinutes()<<5) | (agora.getSeconds()>>1);
+  const dataDos = ((agora.getFullYear()-1980)<<9) | ((agora.getMonth()+1)<<5) | agora.getDate();
+  const corpo = [], central = [];
+  let desloc = 0, totalCentral = 0;
+
+  arquivos.forEach(a=>{
+    const nome = enc.encode(a.nome), dados = enc.encode(a.texto), soma = crc32(dados);
+    const lh = new DataView(new ArrayBuffer(30));
+    lh.setUint32(0, 0x04034b50, true);
+    lh.setUint16(4, 20, true); lh.setUint16(6, 0x0800, true); lh.setUint16(8, 0, true);
+    lh.setUint16(10, horaDos, true); lh.setUint16(12, dataDos, true);
+    lh.setUint32(14, soma, true); lh.setUint32(18, dados.length, true); lh.setUint32(22, dados.length, true);
+    lh.setUint16(26, nome.length, true); lh.setUint16(28, 0, true);
+    corpo.push(new Uint8Array(lh.buffer), nome, dados);
+
+    const cd = new DataView(new ArrayBuffer(46));
+    cd.setUint32(0, 0x02014b50, true);
+    cd.setUint16(4, 20, true); cd.setUint16(6, 20, true); cd.setUint16(8, 0x0800, true); cd.setUint16(10, 0, true);
+    cd.setUint16(12, horaDos, true); cd.setUint16(14, dataDos, true);
+    cd.setUint32(16, soma, true); cd.setUint32(20, dados.length, true); cd.setUint32(24, dados.length, true);
+    cd.setUint16(28, nome.length, true); cd.setUint16(30, 0, true); cd.setUint16(32, 0, true);
+    cd.setUint16(34, 0, true); cd.setUint16(36, 0, true); cd.setUint32(38, 0, true);
+    cd.setUint32(42, desloc, true);
+    central.push(new Uint8Array(cd.buffer), nome);
+
+    desloc += 30 + nome.length + dados.length;
+    totalCentral += 46 + nome.length;
+  });
+
+  const fim = new DataView(new ArrayBuffer(22));
+  fim.setUint32(0, 0x06054b50, true);
+  fim.setUint16(4, 0, true); fim.setUint16(6, 0, true);
+  fim.setUint16(8, arquivos.length, true); fim.setUint16(10, arquivos.length, true);
+  fim.setUint32(12, totalCentral, true); fim.setUint32(16, desloc, true);
+  fim.setUint16(20, 0, true);
+
+  const pedacos = [...corpo, ...central, new Uint8Array(fim.buffer)];
+  const total = pedacos.reduce((s,p)=>s+p.length, 0);
+  const saida = new Uint8Array(total);
+  let i = 0;
+  pedacos.forEach(p=>{ saida.set(p, i); i += p.length; });
+  return saida;
+}
+const xmlEsc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+function planilhaXlsx(){
+  const { linhas, tot } = calcular();
+  const P = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
+  const L0 = 5, L1 = L0 + linhas.length - 1, LT = L1 + 1;   // primeira linha, ultima linha, linha do total
+
+  const txt = (ref,est,v) => '<c r="'+ref+'" s="'+est+'" t="inlineStr"><is><t>'+xmlEsc(v)+'</t></is></c>';
+  const num = (ref,est,v) => '<c r="'+ref+'" s="'+est+'"><v>'+v+'</v></c>';
+  const som = (ref,est,c) => '<c r="'+ref+'" s="'+est+'"><f>SUM('+c+L0+':'+c+L1+')</f></c>';
+
+  let sd = '';
+  sd += '<row r="1" ht="26" customHeight="1">'+txt('A1',1,'Casamento de Jordana e Mateus')+'</row>';
+  sd += '<row r="2">'+txt('A2',0,'Valores conferidos contra a planilha em '+ATUALIZADO+'. Exportado em '+new Date().toLocaleString('pt-BR')+'.')+'</row>';
+  sd += '<row r="3"/>';
+  sd += '<row r="4" ht="22" customHeight="1">'+txt('A4',2,'Fornecedor')+txt('B4',3,'Contratado')+txt('C4',3,'Pago')+txt('D4',3,'A pagar')+'</row>';
+  linhas.forEach((l,i)=>{
+    const r = L0 + i;
+    sd += '<row r="'+r+'">'+txt('A'+r,4,l.n)+num('B'+r,5,l.c)+num('C'+r,5,l.pago)+num('D'+r,5,l.aPagar)+'</row>';
+  });
+  sd += '<row r="'+LT+'" ht="22" customHeight="1">'+txt('A'+LT,6,'Total')+som('B'+LT,7,'B')+som('C'+LT,7,'C')+som('D'+LT,7,'D')+'</row>';
+
+  const sheet = P +
+    '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'+
+    '<dimension ref="A1:D'+LT+'"/>'+
+    '<sheetViews><sheetView showGridLines="0" tabSelected="1" workbookViewId="0">'+
+    '<pane ySplit="4" topLeftCell="A5" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews>'+
+    '<sheetFormatPr defaultRowHeight="15"/>'+
+    '<cols><col min="1" max="1" width="36" customWidth="1"/><col min="2" max="4" width="16" customWidth="1"/></cols>'+
+    '<sheetData>'+sd+'</sheetData>'+
+    '<mergeCells count="2"><mergeCell ref="A1:D1"/><mergeCell ref="A2:D2"/></mergeCells>'+
+    '</worksheet>';
+
+  const estilos = P +
+    '<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'+
+    '<numFmts count="1"><numFmt numFmtId="164" formatCode="&quot;R$&quot;\\ #,##0.00"/></numFmts>'+
+    '<fonts count="4">'+
+    '<font><sz val="11"/><color rgb="FF3A3338"/><name val="Calibri"/></font>'+
+    '<font><b/><sz val="11"/><color rgb="FFFFFFFF"/><name val="Calibri"/></font>'+
+    '<font><b/><sz val="11"/><color rgb="FF7A1236"/><name val="Calibri"/></font>'+
+    '<font><b/><sz val="16"/><color rgb="FF7A1236"/><name val="Calibri"/></font>'+
+    '</fonts>'+
+    '<fills count="4">'+
+    '<fill><patternFill patternType="none"/></fill>'+
+    '<fill><patternFill patternType="gray125"/></fill>'+
+    '<fill><patternFill patternType="solid"><fgColor rgb="FF7A1236"/><bgColor indexed="64"/></patternFill></fill>'+
+    '<fill><patternFill patternType="solid"><fgColor rgb="FFF7EDE7"/><bgColor indexed="64"/></patternFill></fill>'+
+    '</fills>'+
+    '<borders count="3">'+
+    '<border><left/><right/><top/><bottom/><diagonal/></border>'+
+    '<border><left/><right/><top/><bottom style="thin"><color rgb="FFE6D5CA"/></bottom><diagonal/></border>'+
+    '<border><left/><right/><top style="thin"><color rgb="FF7A1236"/></top><bottom/><diagonal/></border>'+
+    '</borders>'+
+    '<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>'+
+    '<cellXfs count="8">'+
+    '<xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>'+
+    '<xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyFont="1" applyAlignment="1"><alignment vertical="center"/></xf>'+
+    '<xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1" applyAlignment="1"><alignment horizontal="left" vertical="center"/></xf>'+
+    '<xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>'+
+    '<xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1"/>'+
+    '<xf numFmtId="164" fontId="0" fillId="0" borderId="1" xfId="0" applyNumberFormat="1" applyBorder="1"/>'+
+    '<xf numFmtId="0" fontId="2" fillId="3" borderId="2" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment vertical="center"/></xf>'+
+    '<xf numFmtId="164" fontId="2" fillId="3" borderId="2" xfId="0" applyNumberFormat="1" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment vertical="center"/></xf>'+
+    '</cellXfs>'+
+    '<cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>'+
+    '</styleSheet>';
+
+  const arquivos = [
+    { nome:'[Content_Types].xml', texto: P +
+      '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'+
+      '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'+
+      '<Default Extension="xml" ContentType="application/xml"/>'+
+      '<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>'+
+      '<Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>'+
+      '<Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>'+
+      '</Types>' },
+    { nome:'_rels/.rels', texto: P +
+      '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+
+      '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/>'+
+      '</Relationships>' },
+    { nome:'xl/workbook.xml', texto: P +
+      '<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" '+
+      'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'+
+      '<sheets><sheet name="Pagamentos" sheetId="1" r:id="rId1"/></sheets>'+
+      '</workbook>' },
+    { nome:'xl/_rels/workbook.xml.rels', texto: P +
+      '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+
+      '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/>'+
+      '<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>'+
+      '</Relationships>' },
+    { nome:'xl/styles.xml', texto: estilos },
+    { nome:'xl/worksheets/sheet1.xml', texto: sheet },
+  ];
+  return { bytes: zipar(arquivos), tot, linhas };
+}
+
+function baixarExcel(){
+  const { bytes } = planilhaXlsx();
+  const blob = new Blob([bytes], { type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'casamento-pagamentos-' + hojeISO() + '.xlsx';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 4000);
+}
+
+/* =================== Interações =================== */
+$('#financeiro').addEventListener('click', e=>{
+  const tt = e.target.closest('[data-tar]'); if (tt) return alternarTarefa(+tt.dataset.tar);
+});
+$('#financeiro').addEventListener('keydown', e=>{
+  const tt = e.target.closest('[data-tar]');
+  if (tt && (e.key===' '||e.key==='Enter')){ e.preventDefault(); alternarTarefa(+tt.dataset.tar); }
+});
+function alternarTarefa(i){
+  FEITAS = FEITAS.includes(i) ? FEITAS.filter(x=>x!==i) : [...FEITAS, i];
+  gravar(CHAVE_T, FEITAS); desenhar();
+}
+
+$('#btnExcel').addEventListener('click', ()=>{
+  const b = $('#btnExcel');
+  try { baixarExcel(); } catch(e){ b.lastChild.textContent = ' Falhou, me avise'; return; }
+  const antes = b.lastChild.textContent;
+  b.lastChild.textContent = ' Planilha baixada';
+  setTimeout(()=>b.lastChild.textContent = antes, 2400);
+});
+
+$('#btnImprimir').addEventListener('click', ()=>window.print());
+
+/* =================== Senha =================== */
+function liberar(){
+  $('#subPainel').textContent = 'Números conferidos contra a planilha em ' + ATUALIZADO + '.';
+  $('#acesso').classList.add('hidden');
+  $('#financeiro').classList.remove('hidden');
+  desenhar();
+}
+$('#btnAcesso').addEventListener('click', ()=>{
+  $('#erroSenha').textContent = '';
+  $('#inSenha').value = '';
+  $('#dlgSenha').showModal();
+  $('#inSenha').focus();
+});
+$('#btnFechaSenha').addEventListener('click', ()=> $('#dlgSenha').close());
+$('#formSenha').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const botao = $('#formSenha button[type=submit]');
+  botao.disabled = true; botao.textContent = 'Abrindo';
+  $('#erroSenha').textContent = '';
+  const abriu = await abrirCofre($('#inSenha').value.trim());
+  botao.disabled = false; botao.textContent = 'Entrar';
+  if (abriu){
+    try { sessionStorage.setItem('jm-senha', $('#inSenha').value.trim()); } catch(err){}
+    $('#dlgSenha').close();
+    liberar();
+    $('#financeiro').scrollIntoView({ behavior:'smooth', block:'start' });
+  } else {
+    $('#erroSenha').textContent = 'Senha incorreta.';
+    $('#inSenha').select();
+  }
+});
+
+/* =================== Seta de rolar =================== */
+$('#seta').addEventListener('click', ()=>{
+  const d = $('#acesso').classList.contains('hidden') ? '#financeiro' : '#acesso';
+  $(d).scrollIntoView({ behavior:'smooth' });
+});
+// Sincronizar tambem na abertura: o navegador restaura a rolagem ao recarregar
+// e sem isto a seta apareceria no meio da pagina.
+const sincronizarSeta = ()=> $('#seta').classList.toggle('some', scrollY > 90);
+addEventListener('scroll', sincronizarSeta, { passive:true });
+sincronizarSeta();
+
+/* =================== Desenhos =================== */
+function brasao(){
+  const svg = $('.wreath'); if(!svg) return;
+  const cx=100, cy=104, R=60, A0=104, A1=252, PASSO=9;
+  let caminho = '';
+  for (let a=A0; a<=A1; a+=4){
+    const r = a*Math.PI/180;
+    caminho += (caminho?'L':'M') + (cx+R*Math.cos(r)).toFixed(1) + ' ' + (cy+R*Math.sin(r)).toFixed(1);
+  }
+  // Folhas tangentes ao circulo, como num ramo de louro (radial viraria um sol).
+  let folhas = '';
+  for (let a=A0; a<=A1; a+=PASSO){
+    const r = a*Math.PI/180, t = ((a-A0)/(A1-A0)*0.95).toFixed(2);
+    const x = cx + R*Math.cos(r), y = cy + R*Math.sin(r);
+    folhas += '<ellipse class="folha" style="--o:.82;animation-delay:'+t+'s" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+
+      '" rx="3.1" ry="8.6" transform="rotate('+(a+20).toFixed(1)+' '+x.toFixed(1)+' '+y.toFixed(1)+')" fill="#7A1236"/>';
+    const xo = cx + (R+8.5)*Math.cos(r), yo = cy + (R+8.5)*Math.sin(r);
+    folhas += '<ellipse class="folha" style="--o:.78;animation-delay:'+(+t+0.12).toFixed(2)+'s" cx="'+xo.toFixed(1)+'" cy="'+yo.toFixed(1)+
+      '" rx="2.3" ry="6.6" transform="rotate('+(a+34).toFixed(1)+' '+xo.toFixed(1)+' '+yo.toFixed(1)+')" fill="#AE8A75"/>';
+  }
+  const ramo = '<path class="ramo" d="'+caminho+'" fill="none" stroke="#AE8A75" stroke-width="1.1" opacity=".55"/>';
+  const lado = ramo + folhas;
+  svg.innerHTML = '<g>'+lado+'</g><g transform="translate('+(2*cx)+',0) scale(-1,1)">'+lado+'</g>' +
+    '<path class="coracao" d="M100 170c-7-6-13-10-13-16a6.4 6.4 0 0 1 13-3 6.4 6.4 0 0 1 13 3c0 6-6 10-13 16z" fill="#951142"/>' +
+    '<text class="mono" x="100" y="122" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="62" font-weight="500" fill="#7A1236" letter-spacing="1">JM</text>';
+  $$('.ramo', svg).forEach(p => p.style.setProperty('--len', p.getTotalLength()));
+}
+// Uma rosa: petalas externas sobrepostas, miolo e espiral.
+// Circulos concentricos NAO funcionam aqui, viram alvo de tiro.
+function rosa(x, y, r, claro, medio, escuro){
+  let g = '';
+  for (let i = 0; i < 6; i++){
+    const a = (i*60 + 15) * Math.PI/180;
+    const px = x + r*0.42*Math.cos(a), py = y + r*0.42*Math.sin(a);
+    g += '<circle cx="'+px.toFixed(1)+'" cy="'+py.toFixed(1)+'" r="'+(r*0.55).toFixed(1)+'" fill="'+claro+'" opacity=".9"/>';
+  }
+  g += '<circle cx="'+x+'" cy="'+y+'" r="'+(r*0.66).toFixed(1)+'" fill="'+medio+'"/>';
+  let d = '';
+  for (let t = 0; t <= 3.4*Math.PI; t += 0.28){
+    const rr = r*0.08 + r*0.46*(t/(3.4*Math.PI));
+    d += (d?'L':'M') + (x + rr*Math.cos(t)).toFixed(1) + ' ' + (y + rr*Math.sin(t)).toFixed(1);
+  }
+  return '<g>'+g+'<path d="'+d+'" fill="none" stroke="'+escuro+'" stroke-width="'+(r*0.1).toFixed(2)+
+    '" stroke-linecap="round" opacity=".55"/></g>';
+}
+function flores(){
+  const rosas = [
+    [46,42,22,'#C8637F','#951142','#5E2138'],
+    [92,26,14,'#E0A6B4','#B8325C','#7A1236'],
+    [28,88,15,'#D98AA0','#A3214C','#5E2138'],
+    [84,74,11,'#EBBDC8','#C8637F','#7A1236'],
+  ];
+  const folhas = [[68,12,-30],[16,62,40],[110,92,10],[132,40,-55],[54,112,70],[12,24,-10],[98,122,35],[120,66,-20]];
+  const g =
+    '<path d="M14 104 Q56 66 118 90" fill="none" stroke="#AE8A75" stroke-width="1.5" opacity=".55"/>' +
+    '<path d="M8 50 Q44 22 96 36" fill="none" stroke="#AE8A75" stroke-width="1.2" opacity=".45"/>' +
+    folhas.map(([x,y,a])=>'<ellipse cx="'+x+'" cy="'+y+'" rx="4.6" ry="13.5" transform="rotate('+a+' '+x+' '+y+')" fill="#AE8A75" opacity=".7"/>').join('') +
+    rosas.map(r => rosa(...r)).join('');
+  $$('.hero-flor').forEach(s => s.innerHTML = g);
+}
+
+/* =================== Início =================== */
+brasao(); flores(); tick(); setInterval(tick, 1000);
+// A senha fica na sessao para nao pedir de novo a cada recarga, e some ao fechar a aba.
+(async ()=>{
+  let guardada = null;
+  try { guardada = sessionStorage.getItem('jm-senha'); } catch(e){}
+  if (guardada && await abrirCofre(guardada)) liberar();
+})();
+</script>
+</body>
+</html>
